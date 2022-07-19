@@ -1,5 +1,4 @@
 <template>
-    <div class="bg-color">
         <div class="container">
             <DiskCard v-for="(disk, index) in disks" :key="index" 
             :poster="disk.poster" 
@@ -8,7 +7,6 @@
             :year="disk.year"
             />
         </div>
-    </div>
 </template>
 
 <script>
@@ -44,10 +42,6 @@ export default {
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
 @import '../styles/general.scss';
-
-    .bg-color {
-        background-color: #1f2d3b;
-    }
 
 div.container {
     width: 60%;

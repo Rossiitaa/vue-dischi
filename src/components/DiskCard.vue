@@ -5,8 +5,8 @@
         </div>
 
         <h2> {{ title }} </h2>
-        <p> {{ author }} </p>
-        <p> {{ year }} </p>
+        <p class="m-0"> {{ author }} </p>
+        <span> {{ year }} </span>
     </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
         background-color: #2E3A46;
         width: calc((100% / 5) - 2rem);
         text-align: center;
+        padding-bottom: 1rem;
 
         img {
             width: 100%;
@@ -43,7 +44,7 @@ export default {
             text-transform: uppercase;
         }
 
-        p {
+        span, p {
             color: #7b7e7f;
             font-size: 1rem;
         }
