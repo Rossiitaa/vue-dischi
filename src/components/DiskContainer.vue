@@ -1,7 +1,7 @@
 <template>
     <section>
         <div>
-            <MusicalGenre />
+            <MusicalGenre @search="filter" />
         </div>
 
         <div v-if="isLoading">
@@ -9,11 +9,12 @@
         </div>
 
         <div v-else class="container position-relative">
-            <DiskCard v-for="(disk, index) in disks" :key="index" 
+            <DiskCard v-for="(disk, index) in filterGenres" :key="index" 
             :poster="disk.poster" 
             :title="disk.title" 
             :author="disk.author" 
             :year="disk.year"
+            :genre="disk.genre"
             />
         </div>
 
@@ -38,6 +39,7 @@ export default {
     data() {
         return {
             disks: [],
+            filterGenres: [],
             isLoading: true,
 
         };
@@ -48,18 +50,28 @@ export default {
             axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then((response) => {
                 this.disks = response.data.response;
-
-            setTimeout(() => {
-                this.isLoading = false;
-            }, 2000);
+                this.filterGenres = this.disks;
             })
+        setTimeout(() => {
+            this.isLoading = false;
+            }, 2000);
         },
+        filter(selectedGenre) {
+            
+            if (selectedGenre === 'allGenres') {
+                this.filterGenres = this.disks;
+            } else {
+                this.filterGenres = [...this.disks].filter( (disk) => 
+                    disk.genre.toLowerCase().includes(selectedGenre));
+            }
+        }
+    }, 
 
-    },
     created() {
         this.getDisks();
         }
     }
+
 
 </script>
 

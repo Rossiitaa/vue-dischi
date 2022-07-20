@@ -20,6 +20,6 @@ export default {
     main {
         height: 100vh;
         background-color: #1f2d3b;
-        padding-top: 4.5rem;
+        padding-top: 2rem;
     }
 </style>
