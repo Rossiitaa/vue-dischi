@@ -1,9 +1,14 @@
 <template>
     <section>
+        <div>
+            <MusicalGenre />
+        </div>
+
         <div v-if="isLoading">
             <Loader />
         </div>
-        <div v-else class="container">
+
+        <div v-else class="container position-relative">
             <DiskCard v-for="(disk, index) in disks" :key="index" 
             :poster="disk.poster" 
             :title="disk.title" 
@@ -11,6 +16,8 @@
             :year="disk.year"
             />
         </div>
+
+
     </section>
 </template>
 
@@ -18,17 +25,21 @@
 import axios from 'axios';
 import DiskCard from './DiskCard.vue';
 import Loader from './Loader.vue';
+import MusicalGenre from './MusicalGenre.vue';
 
 export default {
     components: {
         DiskCard,
         Loader,
+        MusicalGenre,
+        
     },
 
     data() {
         return {
             disks: [],
             isLoading: true,
+
         };
     },
 
@@ -37,11 +48,13 @@ export default {
             axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then((response) => {
                 this.disks = response.data.response;
+
             setTimeout(() => {
                 this.isLoading = false;
             }, 2000);
             })
-        }
+        },
+
     },
     created() {
         this.getDisks();
