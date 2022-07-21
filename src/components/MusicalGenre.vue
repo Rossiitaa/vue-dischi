@@ -1,8 +1,8 @@
 <template>
-    <div class="d-flex justify-content-center mb-5">
+    <div class="m-5">
         <label class="text-white me-2" for="genres">Choose the music genres: </label>
 
-        <select class="rounded" name="genre" id="genre" v-model="selectedGenre" @change="$emit('search', selectedGenre)">
+        <select class="rounded" name="genre" id="genre" v-model="selectedGenre" @click="$emit('search', selectedGenre)">
             <option value="allGenres" selected>All Genres</option>
             <option value="rock">Rock</option>
             <option value="jazz">Jazz</option>
@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
+    div {
+        position: absolute;
+        top: -7rem;
+        left: 22rem;
+    }
 
 </style>

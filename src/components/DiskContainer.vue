@@ -1,15 +1,14 @@
 <template>
     <section>
-        <div>
-            <MusicalGenre @search="filter" />
-        </div>
-
         <div v-if="isLoading">
             <Loader />
         </div>
 
         <div v-else class="container position-relative">
-            <DiskCard v-for="(disk, index) in filterGenres" :key="index" 
+ 
+        <MusicalGenre @search="filter" /> 
+
+        <DiskCard v-for="(disk, index) in filterGenres" :key="index" 
             :poster="disk.poster" 
             :title="disk.title" 
             :author="disk.author" 
@@ -54,7 +53,7 @@ export default {
             })
         setTimeout(() => {
             this.isLoading = false;
-            }, 2000);
+            }, 1000);
         },
         filter(selectedGenre) {
             
